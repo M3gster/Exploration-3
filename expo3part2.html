@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>    
+      
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>   
+<!-- Below is need for angular animations -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <title>Exploration 3: Shopping List</title>
+    </head>
+    
+    <style>
+        .btn {
+            border: none; /* Remove borders */
+            color: white; /* Add a text color */
+        }
+        
+        .success {background-color: #4CAF50;} /* Green */
+    
+    </style>
+    
+    <body>
+
+
+    <!-- the below script tag creates an array of strings --> 
+    <script>
+        var app = angular.module("myShoppingList", []); 
+        app.controller("myCtrl", function($scope) {
+            $scope.products = ["Milk", "Bread", "Cheese"];
+            // below added in second step, this functions adds items to the array
+            $scope.addItem = function () {
+                // below error checking stops duplicates from being added, and blank entries
+                $scope.errortext = "";
+                if (!$scope.addMe) {
+                    $scope.errortext = "That's blank. Please add an item.";
+                    return;
+                }
+                if ($scope.products.indexOf($scope.addMe) == -1) {
+                    $scope.products.push($scope.addMe);
+                }  else {
+                    $scope.errortext = "The item is already in your shopping list.";
+                }}
+            // below was added in the third step, this removes items from the array
+            $scope.removeItem = function (x) {
+                $scope.errortext = ""; // added in part 4 for error handeling
+                 $scope.errortext = "An item was removed"
+                $scope.products.splice(x, 1);
+            } 
+        });
+    </script>
+        
+    <!-- the below displays the array as an unordered list -->    
+    <div ng-app="myShoppingList" ng-controller="myCtrl" class="container" style="max-width:250px;">
+          <ul class="list-group">
+              <h3 style="text-align:center">My Shopping List</h3>
+            <li class="list-group-item" ng-repeat="x in products">{{x}}
+            <!-- the below span tag was added in part 3, this added a button for users to click
+            to remove items -->
+              <span ng-click="removeItem($index)" class="w3-right w3-margin-right">&times;</span></li>
+          </ul>
+        <!-- below added in second part, this adds a button to allow users to submit their text to be 
+        added to the array-->
+        <input ng-model="addMe">
+        <button class="btn success" ng-click="addItem()">Add</button>
+        <p style="text-align:center">{{errortext}}</p>
+    </div>
+
+    </body>
+</html>

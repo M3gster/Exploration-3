@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>    
+    
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>   
+<!-- Below is need for angular animations -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <title>Exploration 3: Peeve</title>
+    </head>
+    <style>
+        h1 {text-align:center;}
+    </style>
+    
+ <body ng-app="">
+     <h1>Peeve: The Greatest Cat</h1>
+    <form>
+      Pick a Page:
+      <input type="radio" ng-model="myVar" value="about">About Peeve
+      <input type="radio" ng-model="myVar" value="look">Look at Peeve
+      <input type="radio" ng-model="myVar" value="stats">Peeve's Stats
+    </form>
+
+    <div ng-switch="myVar">
+      <div ng-switch-when="about">
+         <h2>About Peeve</h2>
+         <p>Peeve is a cute cat. He is gray and plump. He was adopted almost 1 year ago.</p>
+      </div>
+      <div ng-switch-when="look">
+         <h2>Look at Peeve</h2>
+          <div>
+             <img src="cute.jpg" style="width:600px;height:500px;">
+          </div>  
+          <div>
+              <img src="conehead.jpg" style="width:600px;height:700px;">
+          </div>
+          <div>
+              <img src="catwine.jpg" style="width:600px;height:500px;">
+          </div>
+         
+      </div>
+      <div ng-switch-when="stats">
+         <h2>Peeve's Stats</h2>
+         <p>Height: Short</p>
+         <p>Weight: Too Much</p>
+         <p>Skills: Being Cute, Eating</p>  
+      </div>
+    </div>
+     
+
+    </body>
+</html>
